@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo</title>
+  </head>
+  <body>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script type="text/babel">
+    class Child extends React.Component{
+      constructor(...args){
+        super(...args);
+        this.state={
+          c:33
+        };
+      }
+      render(){
+        this.props.cd(this.state.c);
+        return(
+          <div>{this.props['data-p']}</div>
+        );
+      }
+    }
+    class Parent extends React.Component {
+      constructor(...args) {
+        super(...args);
+        this.state={
+          p:12
+        };
+      }
+      fn (data) {
+        return data;
+        console.log(data);
+      }
+      componentDidMount() {
+        //子级传给父级有问题待补
+      }
+      render(){
+        console.log(this.fn()+'渲染');
+        return (
+          <div>
+            <div>111111</div>
+            <Child data-p={this.state.p} cd={this.fn.bind(this)}></Child>
+            <div>222222</div>
+          </div>
+        );
+      }
+    }
+    ReactDOM.render(
+        <Parent/>,
+        document.getElementById('app')
+    );
+    </script>
+    <div id="app">
+    </div>
+  </body>
+</html>

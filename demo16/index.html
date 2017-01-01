@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo</title>
+  </head>
+  <body>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script type="text/babel">
+    class TmpComp extends React.Component {
+      constructor(...args) {
+        super(...args);
+      }
+      fn1(){
+        alert('parent');
+      }
+      fn2(){
+        // 事件冒泡
+        alert('child');
+      }
+      render(){
+        return (
+          <div onClick={this.fn1.bind(this)}>div1<br/>
+            <div onClick={this.fn2.bind(this)}>div2</div>
+          </div>
+        );
+      }
+    }
+    ReactDOM.render(
+      <TmpComp/>,
+      document.getElementById('app')
+    );
+    </script>
+    <div id="app">
+    </div>
+  </body>
+</html>
