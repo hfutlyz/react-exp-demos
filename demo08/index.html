@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo</title>
+  </head>
+  <body>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script type="text/babel">
+      // mixin
+      const fn = {
+        clickEvent(data){
+          console.log(data);
+        }
+      };
+      const Message = React.createClass({
+        mixins:[fn],
+        render () {
+          return (
+            <div>
+              <button onClick={()=>this.clickEvent('1')}>Message</button>
+              <Child/>
+            </div>
+          )
+        }
+      });
+      const Child = React.createClass({
+        mixins:[fn],
+        render () {
+          return (
+            <div>
+              <button onClick={()=>this.clickEvent('2')}>Child</button>
+            </div>
+          )
+        }
+      });
+      ReactDOM.render(
+        <Message/>,
+        document.getElementById('app')
+      );
+    </script>
+    <div id="app">
+    </div>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo</title>
+  </head>
+  <body>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script type="text/babel">
+      //数据传输
+      class Comp extends React.Component {
+        constructor(...args){
+          super(...args);
+          this.state={
+            value:''
+          };
+        };
+        changeEvent(ev){
+          this.setState({
+            value:ev.target.value
+          });
+        };
+        render(){
+          return (
+            <div>
+              <h1>{this.props.name}{this.props.age}</h1>
+              <input type="text" onChange={this.changeEvent.bind(this)}/>
+              <span>{this.state.value}{this.props.name}</span>
+            </div>
+          );
+        };
+      };
+      ReactDOM.render(
+        <Comp name="leo" age="12"/>,
+        document.getElementById('app')
+      );
+    </script>
+    <div id="app">
+    </div>
+  </body>
+</html>

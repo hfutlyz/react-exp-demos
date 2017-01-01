@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo</title>
+  </head>
+  <body>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script type="text/babel">
+      //拖拽
+      class Darg extends React.Component {
+        constructor(...args) {
+          super(...args);
+          this.state = {
+            x:0,
+            y:0
+          };
+        }
+        fn(ev){
+          let disX = ev.pageX-this.state.x;
+          let disY = ev.pageY-this.state.y;
+          document.onmousemove = (ev) => {
+            this.setState({
+              x:ev.pageX-disX,
+              y:ev.pageY-disY
+            });
+          };
+          document.onmouseup = () => {
+            document.onmousemove = null;
+            document.onmouseup = null;
+          };
+        }
+        render(){
+          return (
+            <div style={{left:this.state.x+'px',top:this.state.y+'px'}}
+            className = "box" onMouseDown={this.fn.bind(this)}>
+              <span>1111</span>
+            </div>
+          );
+        }
+      }
+      ReactDOM.render(
+        <Darg/>,
+        document.getElementById('app')
+      );
+    </script>
+    <style media="screen">
+      .box{width: 100px;
+      height: 100px;
+      background-color: aqua;
+      position: absolute;
+    }
+    </style>
+    <div id="app">
+    </div>
+  </body>
+</html>

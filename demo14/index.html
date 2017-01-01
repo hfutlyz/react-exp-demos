@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo</title>
+  </head>
+  <body>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script type="text/babel">
+    //图片异步加载
+    class LazyLoad extends React.Component{
+      constructor(...args) {
+        super(...args);
+        this.aImgPath = [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6];
+        window.onscroll = () => {
+          let imgs = this.refs['div1'].children;
+          let sT = document.documentElement.scrollTop||document.body.scrollTop;
+      		let cH = document.documentElement.clientHeight;
+      		for(let i = 0;i<this.aImgPath.length;i++){
+      			if(imgs[i].offsetTop<sT+cH){
+      				imgs[i].src = imgs[i].getAttribute('data-src');
+      			}
+      		}
+        };
+      }
+      componentDidMount() {
+          let imgs = this.refs['div1'].children;
+      		for(let i = 0;i<5;i++){
+      				imgs[i].src = imgs[i].getAttribute('data-src');
+      		}
+      }
+      render(){
+        let arr = [];
+        for (let i = 0; i < this.aImgPath.length; i++) {
+          arr.push(<img key = {'this.aImgPath'+i}
+          data-src={'images/'+this.aImgPath[i]+'.jpg'} alt=""/>);
+        }
+        return (
+          <div ref="div1">{arr}</div>
+        );
+      }
+    }
+    ReactDOM.render(
+      <LazyLoad imgs="images/1.jpg"/>,
+      document.getElementById('app')
+    );
+    </script>
+    <style media="screen">
+      img{margin:100px auto;display: block;;}
+    </style>
+    <div id="app">
+    </div>
+  </body>
+</html>

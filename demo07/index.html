@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo</title>
+  </head>
+  <body>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script type="text/babel">
+    // 双向绑定数据流
+    const Message = React.createClass({
+      getInitialState() {
+        return {
+          content:''
+        };
+      },
+      changeEvent(event){
+        this.setState({
+          content:event.target.value
+        });
+      },
+      render () {
+        return (
+          <div>
+            <input onChange={this.changeEvent}
+            value={this.state.content} type="text"/>
+            <Show content={this.state.content}/>
+          </div>
+        )
+      }
+    });
+    const Show = React.createClass({
+      render () {
+        return (
+          <div className="div">
+            {this.props.content}
+          </div>
+        )
+      }
+    });
+    ReactDOM.render(
+      <Message/>,
+      document.getElementById('app')
+    );
+    </script>
+    <div id="app">
+    </div>
+    <style media="screen">
+      .div{
+        border:1px solid #ccc;
+        height: 100px;
+        width: 400px;
+        margin-top: 50px;
+        padding: 10px;
+      }
+    </style>
+  </body>
+</html>

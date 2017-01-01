@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo</title>
+  </head>
+  <body>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script type="text/babel">
+      // 组件状态 state
+      const Message = React.createClass({
+        // 初始化状态
+        getInitialState:function () {
+          return({
+            name:'leo',
+            age:12
+          });
+        },
+        changeState:function () {
+          // 改变state
+          this.setState({
+            name:'add',
+            age:'33'
+          });
+        },
+        render () {
+          return (
+            <div>
+              <h1 onClick={this.changeState}>
+                {this.state.name}{this.state.age}
+              </h1>
+            </div>
+          )
+        }
+      });
+      ReactDOM.render(
+        <Message/>,
+        document.getElementById('app'),
+        function () {
+          console.log('渲染完成');
+        }
+      );
+
+    </script>
+    <div id="app">
+    </div>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo</title>
+  </head>
+  <body>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script type="text/babel">
+    //显示隐藏
+    class ShowHide extends React.Component {
+      constructor(...args) {
+        super(...args);
+        this.state={
+          display:'none'
+        };
+      }
+      clientEvent(){
+        this.setState({
+          display:this.state.display=='none'?'block':'none'
+        });
+      }
+      render(){
+        return (
+          <div>
+            <button onClick={this.clientEvent.bind(this)}>显示隐藏</button>
+            <div className="box" style={{display:this.state.display}}></div>
+          </div>
+        );
+      }
+    }
+    ReactDOM.render(
+      <ShowHide/>,
+      document.getElementById('app')
+    );
+    </script>
+    <style media="screen">
+      .box{
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+      }
+    </style>
+    <div id="app">
+    </div>
+  </body>
+</html>

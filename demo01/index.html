@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo01</title>
+  </head>
+  <body>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script type="text/babel">
+      // 创建Message组件
+      const Message = React.createClass({
+
+        render: function() {
+          return (
+            <div>
+              <h1 className="app">Hello React</h1>
+            </div>
+          );
+        }
+
+      });
+      // 渲染Message组件到页面
+      ReactDOM.render(
+        // 要渲染的组件
+        <div>
+          <Message />
+        </div>,
+        // 渲染的位置
+        document.getElementById('app'),
+        // 渲染完成的回调函数
+        function () {
+          console.log('渲染完成');
+        }
+      );
+    </script>
+    <!-- 渲染到的容器 -->
+    <div id="app" class="app">
+
+    </div>
+    <style>
+      .app{background-color: red;}
+    </style>
+  </body>
+</html>

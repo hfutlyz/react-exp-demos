@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo</title>
+  </head>
+  <body>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script type="text/babel">
+      //创建列表
+      class Item extends React.Component{
+        constructor(...args){
+          super(...args);
+
+        }
+        render(){
+          return (
+            <li>{this.props.value}</li>
+          );
+        };
+      }
+      class List extends React.Component {
+        constructor(...args) {
+          super(...args);
+          this.state={
+            arr:[12,5,8,9]
+          };
+        }
+        fn(){
+          this.setState({
+            arr:this.state.arr.concat([Math.random()])
+          });
+        }
+        render(){
+          let arr = this.state.arr;
+          let result = [];
+          for (var i = 0; i < arr.length; i++) {
+            result.push(<Item key = {i} value = {arr[i]}/>);
+          }
+          return(
+            <ul>
+              <button onClick = {this.fn.bind(this)}>点击添加随机数</button>
+              {result}
+            </ul>
+          );
+        }
+      }
+      ReactDOM.render(
+        <List/>,
+        document.getElementById('app')
+      );
+    </script>
+    <div id="app">
+    </div>
+  </body>
+</html>

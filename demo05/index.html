@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo</title>
+  </head>
+  <body>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script type="text/babel">
+    // 组件嵌套
+    const Message = React.createClass({
+      render () {
+        return (
+          <div>
+            <Hello/>
+            <World/>
+          </div>
+        )
+      }
+    });
+    const Hello = React.createClass({
+      render () {
+        return (
+          <div>
+            <span>hello</span>
+          </div>
+        )
+      }
+    });
+    const World = React.createClass({
+      render () {
+        return (
+          <div>
+            <span>World</span>
+          </div>
+        )
+      }
+    });
+    ReactDOM.render(
+      <Message/>,
+      document.getElementById('app')
+    );
+    </script>
+    <div id="app">
+    </div>
+  </body>
+</html>
